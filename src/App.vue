@@ -14,7 +14,7 @@ export default {
     return {
       page:  "Home",
       state: {
-        loggedIn: false
+        loggedIn: true
       }
     }
   },

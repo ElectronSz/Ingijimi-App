@@ -26,6 +26,7 @@
                       @click.prevent="validateUser"
                     >Sign In</b-button>
                   </div>
+                  <flash-message class="myCustomClass"></flash-message>
                 </div>
               </div>
             </div>
@@ -38,9 +39,9 @@
         :active.sync="isLoading"
         :can-cancel="false"
         :is-full-page="fullPage"
-        height = "100"
-        width="100"
-        opacity= "0.9"
+       :height = "height"
+        :width= "width"
+        :opacity="opacity"
         color = "#0131FF"
         background-color="#FFB9D1"
         transition = "bounce"
@@ -59,14 +60,17 @@ import { llg } from "llg";
 export default {
   components: {
     Footer,
-    Loading
+    Loading,
   },
   data() {
     return {
       email: "",
       password: "",
       isLoading: false,
-      fullPage: true
+      fullPage: true,
+       height: 100,
+        width: 100,
+        opacity: 0.9,
     };
   },
   methods: {
@@ -75,6 +79,7 @@ export default {
       // simulate AJAX
       setTimeout(() => {
         this.isLoading = false;
+           
       }, 5000);
       llg(email, password);
     },
@@ -82,17 +87,11 @@ export default {
       //if empty fields, prompt error messsage
       if (this.email.trim() == "" || this.password.trim() == "") {
         llg("Empty Password");
+      
       } else {
         //if validation true, continue login
         this.signIn(this.email, this.password);
       }
-    },
-    doAjax() {
-      this.isLoading = true;
-      // simulate AJAX
-      setTimeout(() => {
-        this.isLoading = false;
-      }, 5000);
     },
     onCancel() {
       llg("User cancelled the loader.");
