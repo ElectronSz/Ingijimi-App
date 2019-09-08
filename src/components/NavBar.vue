@@ -8,43 +8,41 @@
         />
       </b-navbar-item>
     </template>
+    <template slot="start">
+      <b-navbar-item>
+        <router-link to="/">Home</router-link>
+      </b-navbar-item>
+      <b-navbar-item>
+        <router-link to="/features">Features</router-link>
+      </b-navbar-item>
+      <b-navbar-item>
+        <router-link to="/terms">Terms</router-link>
+      </b-navbar-item>
+      <b-navbar-item>
+        <router-link to="/about">About</router-link>
+      </b-navbar-item>
+      <b-navbar-item>
+        <router-link to="/contact">Contact</router-link>
+      </b-navbar-item>
+    </template>
 
-      <template slot="start">
-        <b-navbar-item>
-          <router-link to="/">{{page}}</router-link>
-        </b-navbar-item>
-        <b-navbar-item>
-          <router-link to="/features">Features</router-link>
-        </b-navbar-item>
-        <b-navbar-item>
-          <router-link to="/terms">Terms</router-link>
-        </b-navbar-item>
-        <b-navbar-item>
-          <router-link to="/about">About</router-link>
-        </b-navbar-item>
-        <b-navbar-item>
-          <router-link to="/contact">Contact</router-link>
-        </b-navbar-item>
-      </template>
-
-      <template slot="end">
-        <b-navbar-item tag="div">
-          <div class="buttons">
-            <router-link class="button is-primary" to="/register">
-              <strong>Sign up</strong>
-            </router-link>
-            <router-link class="button is-primary" to="/login">
-              <strong>Login</strong>
-            </router-link>
-          </div>
-        </b-navbar-item>
-      </template>
-
+    <template slot="end">
+      <b-navbar-item tag="div">
+        <div class="buttons">
+          <router-link class="button is-primary" to="/register">
+            <strong>Sign Up</strong>
+          </router-link>
+          <router-link class="button is-primary" to="/login">
+            <strong>Login</strong>
+          </router-link>
+        </div>
+      </b-navbar-item>
+    </template>
   </b-navbar>
 </template>
 
 <script>
 export default {
-  props: ["page", "loggedIn"]
+  props: ["page"]
 };
 </script>

@@ -1,5 +1,6 @@
 <template>
 <div class="body">
+  <NavBar/>
 <div class="container">
     <div class="columns">
       <div class="column is-5">
@@ -95,11 +96,13 @@
 </template>
 
 <script>
+import NavBar from './NavBar'
 import Footer from './Footer.vue'
 export default {
   name: "front",
   components: {
-    Footer
+    Footer,
+    NavBar
   }
 };
 </script>

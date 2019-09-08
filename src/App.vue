@@ -1,25 +1,19 @@
 <template>
   <div id="app">
-    <nav-bar :page="page" :loggedIn="state.loggedIn"/>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 <script>
-import NavBar from './components/NavBar'
 export default {
   components: {
-    NavBar
   },
-  data(){
+  data() {
     return {
-      page:  "Home",
-      state: {
-        loggedIn: true
-      }
-    }
+      loggedIn: true,
+    };
   },
   
-}
+};
 </script>
 
 <style lang="scss">
@@ -27,33 +21,65 @@ export default {
 @import "~bulma/sass/utilities/_all";
 
 // Set your colors
-$primary: #0131FF;
+$primary: #0131ff;
 $primary-invert: findColorInvert($primary);
-$twitter: #4099FF;
+$twitter: #4099ff;
 $twitter-invert: findColorInvert($twitter);
-$accent: #E52755;
+$accent: #e52755;
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
-    "white": ($white, $black),
-    "accent": ($accent, $accent),
-    "black": ($black, $white),
-    "light": ($light, $light-invert),
-    "dark": ($dark, $dark-invert),
-    "primary": ($primary, $primary-invert),
-    "info": ($info, $info-invert),
-    "success": ($success, $success-invert),
-    "warning": ($warning, $warning-invert),
-    "danger": ($danger, $danger-invert),
-    "twitter": ($twitter, $twitter-invert)
+  "white": (
+    $white,
+    $black
+  ),
+  "accent": (
+    $accent,
+    $accent
+  ),
+  "black": (
+    $black,
+    $white
+  ),
+  "light": (
+    $light,
+    $light-invert
+  ),
+  "dark": (
+    $dark,
+    $dark-invert
+  ),
+  "primary": (
+    $primary,
+    $primary-invert
+  ),
+  "info": (
+    $info,
+    $info-invert
+  ),
+  "success": (
+    $success,
+    $success-invert
+  ),
+  "warning": (
+    $warning,
+    $warning-invert
+  ),
+  "danger": (
+    $danger,
+    $danger-invert
+  ),
+  "twitter": (
+    $twitter,
+    $twitter-invert
+  )
 );
 
 // Links
-$link: #FFB9D1;
+$link: #ffb9d1;
 $link-invert: $primary-invert;
 $link-focus-border: $primary;
 
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
-
 </style>

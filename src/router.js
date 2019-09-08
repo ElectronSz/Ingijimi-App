@@ -31,8 +31,14 @@ export default new Router({
     {
       path: '/client',
       name: 'client',
-      component: () => import('./components/Client/Index.vue')
+      component: () => import('./components/Client/Index.vue'),
+      children: [
+        {
+          path: '',
+          component: () => import('./components/Client/Main.vue')
+        }
+      ]
     }
-    
+
   ]
 })

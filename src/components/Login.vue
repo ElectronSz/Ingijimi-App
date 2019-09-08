@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NavBar/>
     <div class="container">
       <div class="columns">
         <div class="column is-12">
@@ -26,7 +27,6 @@
                       @click.prevent="validateUser"
                     >Sign In</b-button>
                   </div>
-                  <flash-message class="myCustomClass"></flash-message>
                 </div>
               </div>
             </div>
@@ -39,28 +39,31 @@
         :active.sync="isLoading"
         :can-cancel="false"
         :is-full-page="fullPage"
-       :height = "height"
-        :width= "width"
+        :height="height"
+        :width="width"
         :opacity="opacity"
-        color = "#0131FF"
+        color="#0131FF"
         background-color="#FFB9D1"
-        transition = "bounce"
-        loader ="bars"
+        transition="bounce"
+        loader="bars"
       ></loading>
     </div>
     <Footer />
   </div>
 </template>
 <script>
+import NavBar from './NavBar'
 import Footer from "./Footer.vue";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 import { llg } from "llg";
+import { auth } from "../config";
 
 export default {
   components: {
     Footer,
     Loading,
+    NavBar
   },
   data() {
     return {
@@ -68,33 +71,69 @@ export default {
       password: "",
       isLoading: false,
       fullPage: true,
-       height: 100,
-        width: 100,
-        opacity: 0.9,
+      height: 100,
+      width: 100,
+      opacity: 0.9,
+      data: ""
     };
+  },
+  created() {},
+  beforeCreate() {
+    llg(" Before Create");
+    if (this.$session.exists()) {
+      this.$router.push({ path: "client" });
+    } else {
+      llg("Before Create None");
+    }
   },
   methods: {
     signIn(email, password) {
-         this.isLoading = true;
+      const self = this;
+      this.isLoading = true;
+
+      let user = {
+        email: email,
+        password: password
+      };
+
+      //login firebase auth
+      auth
+        .signInWithEmailAndPassword(user.email, user.password)
+        .catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+
+          llg(errorCode, errorMessage);
+        })
+        .then(function name(user) {
+          if (typeof user == "undefined") {
+            llg("Undefined User");
+          } else {
+            let data = {
+              uid: user.user.uid,
+              email: user.user.email,
+              verified: user.user.emailVerified,
+              loggedIn: true
+            };
+            self.$session.start();
+            self.$session.set("xyz", data);
+            self.$router.push({ path: "client" });
+          }
+        });
       // simulate AJAX
       setTimeout(() => {
-        this.isLoading = false;
-           
+        self.isLoading = false;
       }, 5000);
-      llg(email, password);
     },
     validateUser() {
       //if empty fields, prompt error messsage
       if (this.email.trim() == "" || this.password.trim() == "") {
         llg("Empty Password");
-      
       } else {
         //if validation true, continue login
         this.signIn(this.email, this.password);
       }
-    },
-    onCancel() {
-      llg("User cancelled the loader.");
     }
   }
 };
