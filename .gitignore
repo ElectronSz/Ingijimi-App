@@ -1,7 +1,6 @@
 .DS_Store
 node_modules
 /dist
-/src/config.js
 .env
 .gitignore
 
@@ -23,4 +22,3 @@ yarn-error.log*
 *.sln
 *.sw?
 node_modules
-config.js
