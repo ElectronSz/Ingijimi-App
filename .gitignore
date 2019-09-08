@@ -3,6 +3,7 @@ node_modules
 /dist
 .env
 .gitignore
+src/config.js
 
 # local env files
 .env.local
