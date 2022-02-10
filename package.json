@@ -15,7 +15,7 @@
     "firebase": "^6.6.0",
     "llg": "^1.2.1",
     "lodash": "^4.17.15",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "sass-loader": "^8.0.0",
     "uid": "^0.0.2",
     "vee-validate": "^3.0.4",
